@@ -58,6 +58,16 @@ export default {
         const scopedInput = _this.$slots.input()[0].ref.i.ctx.$refs[refName];
         if (scopedInput) {
           refInput = scopedInput;
+          if(refInput.tagName.toLowerCase() !== 'input'){
+            const inputs = refInput.querySelectorAll('input')
+            if(inputs.length == 0){
+              console.error('No input tag found inside ref "'+refName+'"')
+            } else {
+              refInput = inputs[0]
+            }
+          }
+        } else {
+          console.error("Failed to find scopedInput (element with ref='"+refName+"')")
         }
       }
       if (this.selectFirstOnEnter) {
