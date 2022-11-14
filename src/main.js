@@ -38,15 +38,15 @@ export {
   MountableMixin,
 }
 
-export default function useGMapApiPromiseLazy() {
+export function useGMapApiPromiseLazy() {
   return gmapApiPromiseLazy;
 }
 
-export default function useGMapOptions() {
+export function useGMapOptions() {
   return gmapOptions;
 }
 
-export default function useGMapDefaultResizeBus() {
+export function useGMapDefaultResizeBus() {
   return defaultResizeBus
 }
 
