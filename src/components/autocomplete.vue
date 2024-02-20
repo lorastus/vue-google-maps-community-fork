@@ -1,22 +1,25 @@
 <template>
-  <template v-if="$slots['input']">
-    <slot
-      name="input"
+  <div :id="inputId">
+    <template v-if="$slots['input']">
+      <slot
+        name="input"
+        v-bind="$attrs"
+      ></slot>
+    </template>
+    <input
+      v-else-if="!$slots['input']"
+      ref="input"
       v-bind="$attrs"
-    ></slot>
-  </template>
-  <input
-    v-else-if="!$slots['input']"
-    ref="input"
-    v-bind="$attrs"
-    v-on="$attrs"
-  />
+      v-on="$attrs"
+    />
+  </div>
 </template>
 
 <script>
 import { bindProps, getPropsValues } from '../utils/bindProps.js'
 import downArrowSimulator from '../utils/simulateArrowDown.js'
 import { mappedPropsToVueProps } from './build-component'
+import { v4 } from 'uuid'
 
 const mappedProps = {
   bounds: {
@@ -48,8 +51,16 @@ const props = {
 }
 
 export default {
+  data() {
+    return {
+      inputId: string
+    }
+  },
   mounted() {
     const _this = this;
+
+    this.inputId = v4()
+
     this.$gmapApiPromiseLazy().then(() => {
       // get correct input from fallback or slot
       let refInput = _this.$refs.input
@@ -58,7 +69,7 @@ export default {
 
       console.log('inputSlot:', inputSlot)
 
-      refInput = _this.$el.querySelectorAll('input')[0]
+      refInput = document.getElementById(this.inputId).querySelectorAll('input')[0]
 
       /*
       if (inputSlot) {
