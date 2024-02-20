@@ -58,6 +58,9 @@ export default {
 
       console.log('inputSlot:', inputSlot)
 
+      refInput = _this.$el.querySelectorAll('input')[0]
+
+      /*
       if (inputSlot) {
         const refName = inputSlot[0].props.ref;
         const scopedInput = inputSlot[0].ref.i.ctx.$refs[refName];
@@ -77,6 +80,7 @@ export default {
           console.error("Failed to find scopedInput (element with ref='"+refName+"')")
         }
       }
+      */
       if (this.selectFirstOnEnter) {
         downArrowSimulator(refInput)
       }
