@@ -56,6 +56,8 @@ export default {
 
       let inputSlot = _this.$slots.input()
 
+      console.log('inputSlot:', inputSlot)
+
       if (inputSlot) {
         const refName = inputSlot[0].props.ref;
         const scopedInput = inputSlot[0].ref.i.ctx.$refs[refName];
