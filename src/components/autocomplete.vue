@@ -65,6 +65,8 @@ export default {
             } else {
               refInput = inputs[0]
             }
+          } else {
+            refInput = scopedInput.$el.querySelectorAll('input')[0]
           }
         } else {
           console.error("Failed to find scopedInput (element with ref='"+refName+"')")
