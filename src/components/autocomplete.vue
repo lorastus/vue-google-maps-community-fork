@@ -53,13 +53,11 @@ const props = {
 export default {
   data() {
     return {
-      inputId: string
+      inputId: v4()
     }
   },
   mounted() {
     const _this = this;
-
-    this.inputId = v4()
 
     this.$gmapApiPromiseLazy().then(() => {
       // get correct input from fallback or slot
